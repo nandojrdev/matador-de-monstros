@@ -35,14 +35,16 @@
     </div>
     <div class="panel buttons">
       <template v-if="running">
-        <button class="btn attack">Ataque</button>
-        <button class="btn especial-attack">Ataque Especial</button>
-        <button class="btn heal">Curar</button>
+        <!-- Utilizando o method attack setando false para especial -->
+        <button @click="attack(false)" class="btn attack">Ataque</button>
+        <!-- Utilizando o mesmo method attack mais setando true para ataque especial -->
+        <button @click="attack(true)"class="btn especial-attack">Ataque Especial</button>
+        <button @click="healAndHurt" class="btn heal">Curar</button>
         <button @click="running = false" class="btn give-up">Desistir</button>
       </template>
       <button v-else @click="startGame" class="btn new-game">Iniciar Jogo</button>
     </div>
-    <div class="panel logs"></div>
+    <div v-if="logs.length" class="panel logs"></div>
   </div>
 
   <script src="./app.js"></script>
