@@ -16,6 +16,7 @@ new Vue({
       this.running = true
       this.playerLife = 100
       this.monsterLife = 100
+      this.logs = []
     },
     // method será usado no botão attack e no especial attack, sendo este último sendo setada como booleano, true or false para determinar se o ataque é especial ou não
     attack(especial) {
@@ -35,10 +36,11 @@ new Vue({
       const heal = this.getRandom(min, max)
       // Garantindo  que o life do player jamais seja maior que 100
       this.playerLife = Math.min(this.playerLife + heal, 100)
+      this.registerLog(`Jogador ganhou life de ${heal}.`, 'player')
     },
     healAndHurt() {
       this.heal(10, 15)
-      this.hurt('playerLife', 7, 12, false)
+      this.hurt('playerLife', 7, 12, false, 'Monstro', 'Jogador', 'monster')
     },
     // Gerando um número randomico entre um valor mínimo e um valor máximo
     getRandom(min, max) {
